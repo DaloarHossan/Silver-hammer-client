@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import ProductModel from "./ProductModel";
 
 const Product = ({ product }) => {
+
   const { name, description, img, min_order, quantity ,price} = product;
-  console.log(product);
+//   const [modelDescription,setModelDescription]=useState('')
+
+//   const readMore=(des)=>{
+//     setModelDescription(des)
+//   }
+//   console.log(modelDescription);
+  const minDescription=description.slice(0,82)
 
   return (
     <div>
@@ -22,8 +30,9 @@ const Product = ({ product }) => {
 		  Quantity:{quantity}</p>
 		  </div>
 		  <div>
-			  <p>{description}</p>
+			  <p>Description:{minDescription} </p>
 		  </div>
+        {/* <ProductModel  des={modelDescription}></ProductModel> */}
           <div class="card-actions">
             <button class="btn btn-primary">Buy Now</button>
           </div>

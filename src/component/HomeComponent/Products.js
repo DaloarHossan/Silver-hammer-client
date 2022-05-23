@@ -8,7 +8,7 @@ const Products = () => {
 		.then(res=>res.json())
 		.then(data=>setProducts(data))
 	},[])
-	console.log(products);
+	// console.log(products);
 	
 	return (
 		<div className='grid md:grid-cols-3 gap-5 md:mx-12'>
