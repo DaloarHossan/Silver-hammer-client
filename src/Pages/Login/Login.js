@@ -3,12 +3,30 @@ import pic from '../../assets/login.png'
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.config';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 
 const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-  const onSubmit = data => console.log(data);
+	const [
+		createUserWithEmailAndPassword,
+		user,
+		loading,
+		error,
+	  ] = useCreateUserWithEmailAndPassword(auth);
+	let setError;
+	if(loading || gLoading){
+
+	}
+	if(error || gError){
+		setError =error.message;
+	}
+	const handelGoogle=()=>{
+		signInWithGoogle();
+	}
+  const onSubmit = data => {
+   createUserWithEmailAndPassword(data.email, data.password)
+  };
 	return (
 		<div class="min-h-screen ">
   <div class="hero-content flex-col lg:flex-row">
@@ -46,6 +64,7 @@ const Login = () => {
 		  {errors.password?.type === 'required' &&  <small className="label-text text-red-500">{errors.password.message}</small>}
 			{errors.password?.type === 'pattern' &&  <small className="label-text text-red-500">{errors.password.message}</small>}
           </label>
+		  <p><small className="label-text text-red-500">{setError}</small></p>
         </div>
 		<label class="label">
             <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
@@ -59,7 +78,7 @@ const Login = () => {
 	  <small>Are you New on Sliver Hammer? <span class="text-secondary"><Link to='/signup'>Create New an Account</Link></span></small>
 	  <div class="divider">OR</div>
 	   
-		<button class="btn btn-primary w-full">Continue With Google</button>
+		<button onClick={handelGoogle} class="btn btn-primary w-full">Continue With Google</button>
 		
 	  </div>
     </div>
