@@ -1,11 +1,11 @@
 import React from 'react';
+import Banner from '../../component/HomeComponent/Banner';
 import Footer from '../../component/SharedComponent/Footer';
-import Navbar from '../../component/SharedComponent/Navbar';
 
 const Home = () => {
 	return (
 		<div>
-			<Navbar></Navbar>
+			<Banner></Banner>
 			<Footer></Footer>
 		</div>
 	);

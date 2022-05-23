@@ -1,0 +1,27 @@
+[
+{   "_id":1,
+	"name":"nav",
+	"img":"hr",
+	"price":120,
+	"description":"a",
+	"minimum-quantity":80,
+	"available-quantity":1500
+},
+{  "_id":2,
+	"name":"nav",
+	"img":"hr",
+	"price":120,
+	"description":"a",
+	"minimum-quantity":80,
+	"available-quantity":1500
+},
+{  "_id":3,
+	"name":"nav",
+	"img":"hr",
+	"price":120,
+	"description":"a",
+	"minimum-quantity":80,
+	"available-quantity":1500
+}
+
+]
