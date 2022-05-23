@@ -1,27 +1,51 @@
 [
 {   "_id":1,
-	"name":"nav",
-	"img":"hr",
-	"price":120,
-	"description":"a",
-	"minimum-quantity":80,
-	"available-quantity":1500
+	"name":"Traxx TX-300 300 Watt Hot Melt Glue Gun Kit",
+	"img":"https://i.ibb.co/VDzNSSB/traxx-tx-300-kit-3.jpg",
+	"price":79,
+	"description":"A premium glue applicator system for tack strip, hardwood, floor transitions, trims, moldings and much more. The kit includes 300W adj. temp. glue gun, 2 nozzles and carrying case.",
+	"min_order":100,
+	"aquantity":1500
 },
 {  "_id":2,
-	"name":"nav",
-	"img":"hr",
+	"name":"20V MAX* Cordless Drill/Driver With Smart Select® Technology",
+	"img":"https://i.ibb.co/g3mw69d/1-2.jpg",
 	"price":120,
-	"description":"a",
-	"minimum-quantity":80,
-	"available-quantity":1500
+	"description":"With variable speeds and an all-metal keyed chuck, this lithium battery drill helps you drill holes and drive screws through wood, metal, and plastic with ease",
+	"min_order":100,
+	"quantity":1500
 },
 {  "_id":3,
-	"name":"nav",
-	"img":"hr",
-	"price":120,
-	"description":"a",
-	"minimum-quantity":80,
-	"available-quantity":1500
+	"name":"iQMS362 16.5 Dust Control Masonry Saw w/2 FREE Blades",
+	"img":"https://i.ibb.co/1Zs6gwV/iqms362-promo.jpg",
+	"price":2599,
+	"description":"The iQMS362 is a revolutionary masonry saw with integrated dust collection for cutting brick, pavers, stone and veneer with speed and precision.",
+	"min_order":25,
+	"quantity":150
+},
+{  "_id":4,
+	"name":"20V MAX* Variable Speed Cordless Reciprocating Saw",
+	"img":"https://i.ibb.co/prbsqNs/1-8.jpg",
+	"price":99,
+	"description":"Our 20V MAX* Variable Speed Cordless Reciprocating Saw is versatile, lightweight, and easy to use. It features a powerful 3000 SPM motor with a variable speed trigger and electric brake to enhance control.",
+	"min_order":100,
+	"quantity":1500
+},
+{  "_id":5,
+	"name":"Hitachi G12VA 4-1/2-Inch 13-Amp Variable Speed Angle Grinder",
+	"img":"https://i.ibb.co/vdrRYwC/1-5.jpg",
+	"price":149,
+	"description":"The Hitachi G12VA is a result of innovativeness and creativity, with the two field coming together to create one of the best variable speed angle grinders of this generation.",
+	"min_order":200,
+	"quantity":2500
+},
+{  "_id":6,
+	"name":"6 Inch Chain Saw Sharpener Tool 110V 220V Electric Chain Saw Blade Sharpener",
+	"img":"https://i.ibb.co/LY8k3JD/1-6.jpg",
+	"price":66,
+	"description":"Sharpen saw chains in minutes! Chain clamp handle securely holds chain in place during cutting. 4200 RPM grinding speed 120 volt, 0.75 amp, direct drive ball bearing motor.",
+	"min_order":100,
+	"quantity":1500
 }
 
 ]

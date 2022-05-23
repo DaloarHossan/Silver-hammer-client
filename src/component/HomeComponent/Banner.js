@@ -22,7 +22,7 @@ const Banner = () => {
 		  </h1>
 		  </div >
 		  <div data-aos='zoom-in' data-aos-delay='1500'>
-          <button class="btn bg-base-100 text-black">Buy now</button>
+          <button class="btn hover:bg-primary hover:text-white  bg-base-100 text-black">Buy now</button>
 
 		  </div>
         </div>
