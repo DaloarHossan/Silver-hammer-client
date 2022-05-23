@@ -1,5 +1,5 @@
 [
-{   "_id":1,
+{   "_i:1,
 	"name":"Traxx TX-300 300 Watt Hot Melt Glue Gun Kit",
 	"img":"https://i.ibb.co/VDzNSSB/traxx-tx-300-kit-3.jpg",
 	"price":79,
@@ -7,7 +7,7 @@
 	"min_order":100,
 	"aquantity":1500
 },
-{  "_id":2,
+{  
 	"name":"20V MAX* Cordless Drill/Driver With Smart Select® Technology",
 	"img":"https://i.ibb.co/g3mw69d/1-2.jpg",
 	"price":120,
@@ -15,7 +15,7 @@
 	"min_order":100,
 	"quantity":1500
 },
-{  "_id":3,
+{  
 	"name":"iQMS362 16.5 Dust Control Masonry Saw w/2 FREE Blades",
 	"img":"https://i.ibb.co/1Zs6gwV/iqms362-promo.jpg",
 	"price":2599,
@@ -23,7 +23,7 @@
 	"min_order":25,
 	"quantity":150
 },
-{  "_id":4,
+{  
 	"name":"20V MAX* Variable Speed Cordless Reciprocating Saw",
 	"img":"https://i.ibb.co/prbsqNs/1-8.jpg",
 	"price":99,
@@ -31,7 +31,7 @@
 	"min_order":100,
 	"quantity":1500
 },
-{  "_id":5,
+{  
 	"name":"Hitachi G12VA 4-1/2-Inch 13-Amp Variable Speed Angle Grinder",
 	"img":"https://i.ibb.co/vdrRYwC/1-5.jpg",
 	"price":149,
@@ -39,7 +39,7 @@
 	"min_order":200,
 	"quantity":2500
 },
-{  "_id":6,
+{  
 	"name":"6 Inch Chain Saw Sharpener Tool 110V 220V Electric Chain Saw Blade",
 	"img":"https://i.ibb.co/LY8k3JD/1-6.jpg",
 	"price":66,

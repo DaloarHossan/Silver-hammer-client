@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProductModel from "./ProductModel";
 
 const Product = ({ product }) => {
 
-  const { name, description, img, min_order, quantity ,price} = product;
+  const {_id, name, description, img, min_order, quantity ,price} = product;
+  const navigate=useNavigate()
+
+  const buyNow =(id)=> {
+        navigate(`/checkout/${id}`);
+  }
 //   const [modelDescription,setModelDescription]=useState('')
 
 //   const readMore=(des)=>{
@@ -34,7 +40,7 @@ const Product = ({ product }) => {
 		  </div>
         {/* <ProductModel  des={modelDescription}></ProductModel> */}
           <div class="card-actions">
-            <button class="btn btn-primary">Buy Now</button>
+            <button onClick={()=>buyNow(_id)} class="btn btn-primary">Buy Now</button>
           </div>
         </div>
       </div>
