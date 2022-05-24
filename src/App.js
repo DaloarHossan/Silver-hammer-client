@@ -6,6 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import Checkout from './Pages/Checkout/Checkout';
 import Login from './Pages/Login/Login';
+import Signup from './Pages/Login/Signup';
 AOS.init();
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/checkout/:id' element={<Checkout></Checkout>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<Signup></Signup>}></Route>
       </Routes>
       </Navbar>
     </div>

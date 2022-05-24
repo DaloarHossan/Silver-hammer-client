@@ -1,22 +1,24 @@
 import React from 'react';
 import pic from '../../assets/login.png'
 import { useForm } from "react-hook-form";
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.config';
-import {  useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import {  useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 
-const Login = () => {
+const Signup = () => {
 	const navigate =useNavigate()
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-	const [
-		signInWithEmailAndPassword,
+	
+	  const [
+		createUserWithEmailAndPassword,
 		user,
 		loading,
 		error,
-	  ] = useSignInWithEmailAndPassword(auth);
+	  ] = useCreateUserWithEmailAndPassword(auth);
+	  const [updateProfile, updating] = useUpdateProfile(auth);
 	let setError;
-	if(loading || gLoading){
+	if(loading || gLoading || updating){
 
 	}
 	if(error || gError){
@@ -28,8 +30,9 @@ const Login = () => {
 	const handelGoogle=()=>{
 		signInWithGoogle();
 	}
-  const onSubmit = data => {
-   signInWithEmailAndPassword(data.email, data.password)
+  const onSubmit = async (data) => {
+   await createUserWithEmailAndPassword(data.email, data.password)
+   await updateProfile({displayName:data.name})
   };
 	return (
 		<div class="min-h-screen ">
@@ -41,6 +44,22 @@ const Login = () => {
       <form onSubmit={handleSubmit(onSubmit)} class="card-body" >
         <div class="form-control">
           <label class="label">
+            <span class="label-text">Name</span>
+          </label>
+          <input type="text" 
+		  name="name" placeholder="Name" class="input input-bordered" {...register("name", { required:{value:true, message: 'Name is required'} ,
+		  pattern: {
+			  value:  /[a-zA-Z].{2,20}/,
+			  message: 'Must be at least 3 characters and long' 
+			}})} />
+		<label class="">
+            {errors.name?.type === 'required' &&  <small className="label-text text-red-500">{errors.email.message}</small>}
+			{<errors className="name"></errors>?.type === 'pattern' &&  <small className="label-text text-red-500">{errors.email.message}</small>}
+          </label>
+		  
+        </div>
+        <div class="form-control">
+          <label class="">
             <span class="label-text">Email</span>
           </label>
           <input type="email" 
@@ -70,11 +89,11 @@ const Login = () => {
           </label>
 		  <p><small className="label-text text-red-500">{setError}</small></p>
         </div>
-		<label class="label">
+		<label class="">
             <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
           </label>
         <div class="form-control mt-6">
-          <input type='submit' class="btn btn-primary" value="Login"/>
+          <input type='submit' class="btn btn-primary" value="Signup"/>
         </div>
 		
       </form>
@@ -91,4 +110,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Signup;
