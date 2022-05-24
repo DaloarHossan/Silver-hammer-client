@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate} from 'react-router-dom';
 import auth from '../../firebase.config';
 import {  useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import Loading from '../../component/SharedComponent/Loading';
 
 const Login = () => {
 	const navigate =useNavigate()
@@ -17,7 +18,7 @@ const Login = () => {
 	  ] = useSignInWithEmailAndPassword(auth);
 	let setError;
 	if(loading || gLoading){
-
+      return <Loading></Loading>
 	}
 	if(error || gError){
 		setError =error.message;

@@ -1,11 +1,11 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import auth from "../../firebase.config";
 
 const Navbar = ({children}) => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const signout=()=>{
     signOut(auth)
   }
@@ -24,7 +24,7 @@ const Navbar = ({children}) => {
         <NavLink className='rounded-lg mr-2' to='/no'>Navbar Item 2</NavLink>
       </li>
       <li>
-        { user?<button onClick={signout} className='rounded-lg mr-2'>Signout</button>:<NavLink className='rounded-lg mr-2' to='/login'>Login</NavLink>}
+        { user?<button onClick={signout} className='font-semibold rounded-lg mr-2'>Signout</button>:<NavLink className='rounded-lg mr-2' to='/login'>Login</NavLink>}
       </li>
     </>
   );
@@ -41,7 +41,7 @@ const Navbar = ({children}) => {
         </label>
       </div> 
       <div class="flex-none hidden lg:block">
-        <ul class="menu menu-horizontal">
+        <ul class="menu menu-horizontal font-semibold">
        {navLinks}
         </ul>
       </div>
@@ -52,10 +52,7 @@ const Navbar = ({children}) => {
     <label for="my-drawer-3" class="drawer-overlay"></label> 
     <ul class="menu p-4 overflow-y-auto w-80 bg-base-100">
     {navLinks}
-	
-      
     </ul>
-    
   </div>
 </div>
   );

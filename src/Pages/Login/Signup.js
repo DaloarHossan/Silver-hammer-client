@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.config';
 import {  useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import Loading from '../../component/SharedComponent/Loading';
 
 const Signup = () => {
 	const navigate =useNavigate()
@@ -19,7 +20,7 @@ const Signup = () => {
 	  const [updateProfile, updating] = useUpdateProfile(auth);
 	let setError;
 	if(loading || gLoading || updating){
-
+		return <Loading></Loading>
 	}
 	if(error || gError){
 		setError =error.message;
@@ -98,7 +99,7 @@ const Signup = () => {
 		
       </form>
 	  <div class='px-8 mb-6'>
-	  <small>Are you New on Sliver Hammer? <span class="text-secondary"><Link to='/signup'>Create New an Account</Link></span></small>
+	  <small>Already have an account? <span class="text-secondary"><Link to='/login'>Please login</Link></span></small>
 	  <div class="divider">OR</div>
 	   
 		<button onClick={handelGoogle} class="btn btn-primary w-full">Continue With Google</button>
