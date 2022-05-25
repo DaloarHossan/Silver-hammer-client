@@ -5,6 +5,7 @@ import { Link, useNavigate} from 'react-router-dom';
 import auth from '../../firebase.config';
 import {  useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../../component/SharedComponent/Loading';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
 	const navigate =useNavigate()
@@ -16,6 +17,10 @@ const Login = () => {
 		loading,
 		error,
 	  ] = useSignInWithEmailAndPassword(auth);
+	const [token] = useToken(user || gUser)
+	
+	console.log(gUser);
+	
 	let setError;
 	if(loading || gLoading){
       return <Loading></Loading>
@@ -23,7 +28,7 @@ const Login = () => {
 	if(error || gError){
 		setError =error.message;
 	}
-	if(user || gUser){
+	if(token){
       navigate('/')
 	}
 	const handelGoogle=()=>{

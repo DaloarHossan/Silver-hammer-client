@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.config';
 import {  useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Loading from '../../component/SharedComponent/Loading';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
 	const navigate =useNavigate()
@@ -17,6 +18,7 @@ const Signup = () => {
 		error,
 	  ] = useCreateUserWithEmailAndPassword(auth);
 	  const [updateProfile, updating] = useUpdateProfile(auth);
+	  const [token] = useToken(user || gUser)
 	let setError;
 	if(loading || gLoading || updating){
 		return <Loading></Loading>
@@ -24,7 +26,7 @@ const Signup = () => {
 	if(error || gError){
 		setError =error.message;
 	}
-	if(user || gUser){
+	if(token){
       navigate('/')
 	}
 	const handelGoogle=()=>{

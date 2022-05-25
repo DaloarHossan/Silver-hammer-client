@@ -64,18 +64,18 @@ console.log(quantityError.error);
      </label>
     <input onBlur={orderHandel} name="quantity" type="number" placeholder="Type here" class="input input-bordered w-1/2 max-w-xs" />
     <label>
-      <span class="text-center text-red"> {quantityError? 'At least min order purchase' : ' '}</span>
+      <span class="text-center text-red-600"> {quantityError? 'At least min order purchase' : ' '}</span>
     </label>
     </div>
     
     <label>
             <span class="label-text block">Name</span>
      </label>
-    <input type="text" placeholder="Type here" value={user.displayName} disabled class="input input-bordered w-full " />
+    <input type="text" placeholder="Type here" value={user.displayName} readOnly class="input input-bordered w-full " />
     <label>
             <span class="label-text">Email</span>
     </label>
-    <input type="email" placeholder="Type here" value={user.email} disabled class="input input-bordered w-full" />
+    <input type="email" placeholder="Type here" value={user.email} readOnly class="input input-bordered w-full" />
     <label>
             <span class="label-text">Address</span>
     </label>
