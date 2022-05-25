@@ -11,7 +11,7 @@ const Login = () => {
 	const navigate =useNavigate();
 	let location = useLocation();
 	let from = location.state?.from?.pathname || "/";
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors } ,reset } = useForm();
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 	const [
 		signInWithEmailAndPassword,
@@ -35,7 +35,8 @@ const Login = () => {
 		signInWithGoogle();
 	}
   const onSubmit = data => {
-   signInWithEmailAndPassword(data.email, data.password)
+   signInWithEmailAndPassword(data.email, data.password);
+   reset()
   };
 	return (
 		<div class="min-h-screen ">

@@ -9,7 +9,7 @@ import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
 	const navigate =useNavigate()
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const { register, handleSubmit, formState: { errors },reset } = useForm();
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 	  const [
 		createUserWithEmailAndPassword,
@@ -35,6 +35,7 @@ const Signup = () => {
   const onSubmit = async (data) => {
    await createUserWithEmailAndPassword(data.email, data.password)
    await updateProfile({displayName:data.name})
+   reset()
   };
 	return (
 		<div class="min-h-screen ">

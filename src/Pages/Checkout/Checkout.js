@@ -3,13 +3,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import auth from "../../firebase.config";
 import Loading from '../../component/SharedComponent/Loading';
+import { useForm } from "react-hook-form";
 
 
 const Checkout = () => {
   const { id } = useParams();
   const [user,loading] = useAuthState(auth);
-  // const [quantityError,setQuantityError]=useState({error:' '});
+  const { register, handleSubmit, formState: { errors },reset } = useForm();
   const [quantityError,setQuantityError]=useState(false);
+  const [orderQuantity,setOrderQuantity]= useState(0);
   const [product, setProduct] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
@@ -23,19 +25,23 @@ const Checkout = () => {
   const orderHandel=(e)=> {
     const order = e.target.value;
     
-    
-    if(order>=product.min_order){
-     return setQuantityError(false)
+    if(order>=product.min_order && order<=quantity) {
+      setQuantityError(false)
+     setOrderQuantity(order)
     }
     else{
-      return setQuantityError(true);
+       setQuantityError(true)
     }  
-   
-      
+ 
   }
-  
-console.log(quantityError.error);
+  const onSubmit =  (data) =>{
+    console.log(data,user.displayName,user.email,orderQuantity);
+    
+    reset()
+    
+}
 
+  
   return (
    <div>
 	    <div class="hero min-h-screen">
@@ -58,16 +64,17 @@ console.log(quantityError.error);
 	<div class="card w-full lg:w-1/2  bg-secondary shadow-xl">
   <div class="card-body">
     <h2 class="card-title justify-center">Purchase</h2>
+    
+    <form onSubmit={handleSubmit(onSubmit)} >
     <div class="card-actions flex-col justify-center items-center">
     <label class="label">
             <span class="label-text font-bold">Quantity</span>
      </label>
-    <input onBlur={orderHandel} name="quantity" type="number" placeholder="Type here" class="input input-bordered w-1/2 max-w-xs" />
+    <input onChange={orderHandel} name="quantity"  required type="number" placeholder="Type here" class="input input-bordered w-1/2 max-w-xs" />
     <label>
       <span class="text-center text-red-600"> {quantityError? 'At least min order purchase' : ' '}</span>
     </label>
     </div>
-    
     <label>
             <span class="label-text block">Name</span>
      </label>
@@ -79,14 +86,22 @@ console.log(quantityError.error);
     <label>
             <span class="label-text">Address</span>
     </label>
-    <input type="text" placeholder="Add Address" class="input input-bordered w-full " />
+    <input type="text" placeholder="Add Address" class="input input-bordered w-full " name="address"  {...register("address", { required:{value:true, message: 'Address is required'}})} />
+    <label class="label">
+            {errors.address?.type === 'required' &&  <small className="label-text text-red-500">{errors.address.message}</small>}
+          </label>
     <label>
             <span class="label-text">Phone</span>
     </label>
-    <input type="text" placeholder="Add Phone" class="input input-bordered w-full " />
+    <input type="text" placeholder="Add Phone" class="input input-bordered w-full " name="phone" {...register("phone", { required:{value:true, message: 'Phone is required'}})} />
+    <label class="">
+            {errors.phone?.type === 'required' &&  <small className="label-text text-red-500">{errors.phone.message}</small>}
+          </label>
     <div class="card-actions justify-center">
       <button disabled={quantityError} class="btn px-12 text-white btn-primary">Order</button>
     </div>
+    </form>
+    
   </div>
 </div>
 	</div>
