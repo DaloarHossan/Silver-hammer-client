@@ -1,14 +1,16 @@
 import React from 'react';
 import pic from '../../assets/login.png'
 import { useForm } from "react-hook-form";
-import { Link, useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import auth from '../../firebase.config';
 import {  useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../../component/SharedComponent/Loading';
 import useToken from '../../Hooks/useToken';
 
 const Login = () => {
-	const navigate =useNavigate()
+	const navigate =useNavigate();
+	let location = useLocation();
+	let from = location.state?.from?.pathname || "/";
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 	const [
@@ -17,10 +19,8 @@ const Login = () => {
 		loading,
 		error,
 	  ] = useSignInWithEmailAndPassword(auth);
-	const [token] = useToken(user || gUser)
-	
-	console.log(gUser);
-	
+	const [token] = useToken(user || gUser);
+
 	let setError;
 	if(loading || gLoading){
       return <Loading></Loading>
@@ -29,7 +29,7 @@ const Login = () => {
 		setError =error.message;
 	}
 	if(token){
-      navigate('/')
+		navigate(from, { replace: true });
 	}
 	const handelGoogle=()=>{
 		signInWithGoogle();
