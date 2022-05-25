@@ -24,7 +24,7 @@ const Product = ({ product }) => {
         <figure class="px-10 pt-10">
           <img
             src={img}
-            alt="Shoes"
+            alt={name}
             class="rounded-xl"
           />
         </figure>

@@ -10,7 +10,6 @@ const Signup = () => {
 	const navigate =useNavigate()
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-	
 	  const [
 		createUserWithEmailAndPassword,
 		user,
@@ -101,9 +100,7 @@ const Signup = () => {
 	  <div class='px-8 mb-6'>
 	  <small>Already have an account? <span class="text-secondary"><Link to='/login'>Please login</Link></span></small>
 	  <div class="divider">OR</div>
-	   
 		<button onClick={handelGoogle} class="btn btn-primary w-full">Continue With Google</button>
-		
 	  </div>
     </div>
   </div>
