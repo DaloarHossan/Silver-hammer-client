@@ -8,6 +8,8 @@ import Loading from '../../component/SharedComponent/Loading';
 const Checkout = () => {
   const { id } = useParams();
   const [user,loading] = useAuthState(auth);
+  // const [quantityError,setQuantityError]=useState({error:' '});
+  const [quantityError,setQuantityError]=useState(false);
   const [product, setProduct] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/products/${id}`)
@@ -18,6 +20,21 @@ const Checkout = () => {
     return <Loading></Loading>
   }
   const { name, price, img, description, min_order, quantity } = product;
+  const orderHandel=(e)=> {
+    const order = e.target.value;
+    
+    
+    if(order>=product.min_order){
+     return setQuantityError(false)
+    }
+    else{
+      return setQuantityError(true);
+    }  
+   
+      
+  }
+  
+console.log(quantityError.error);
 
   return (
    <div>
@@ -41,15 +58,18 @@ const Checkout = () => {
 	<div class="card w-full lg:w-1/2  bg-secondary shadow-xl">
   <div class="card-body">
     <h2 class="card-title justify-center">Purchase</h2>
-    <div class="card-actions justify-center">
+    <div class="card-actions flex-col justify-center items-center">
     <label class="label">
             <span class="label-text font-bold">Quantity</span>
      </label>
-    <input type="number" placeholder="Type here" class="input input-bordered w-1/2 max-w-xs" />
-
-    </div>
+    <input onBlur={orderHandel} name="quantity" type="number" placeholder="Type here" class="input input-bordered w-1/2 max-w-xs" />
     <label>
-            <span class="label-text">Name</span>
+      <span class="text-center text-red"> {quantityError? 'At least min order purchase' : ' '}</span>
+    </label>
+    </div>
+    
+    <label>
+            <span class="label-text block">Name</span>
      </label>
     <input type="text" placeholder="Type here" value={user.displayName} disabled class="input input-bordered w-full " />
     <label>
@@ -65,7 +85,7 @@ const Checkout = () => {
     </label>
     <input type="text" placeholder="Add Phone" class="input input-bordered w-full " />
     <div class="card-actions justify-center">
-      <button class="btn px-12 text-white btn-primary">Order</button>
+      <button disabled={quantityError} class="btn px-12 text-white btn-primary">Order</button>
     </div>
   </div>
 </div>
