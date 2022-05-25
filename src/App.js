@@ -7,6 +7,8 @@ import 'aos/dist/aos.css';
 import Checkout from './Pages/Checkout/Checkout';
 import Login from './Pages/Login/Login';
 import Signup from './Pages/Login/Signup';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import RequireAuth from './component/PrivetRoute/RequireAuth';
 AOS.init();
 
@@ -21,6 +23,7 @@ function App() {
         <Route path='/checkout/:id' element={<RequireAuth><Checkout></Checkout></RequireAuth>}></Route>
       </Routes>
       </Navbar>
+      <ToastContainer/>
     </div>
   );
 }

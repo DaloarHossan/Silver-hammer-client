@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import auth from "../../firebase.config";
 import Loading from '../../component/SharedComponent/Loading';
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 
 const Checkout = () => {
@@ -23,11 +24,11 @@ const Checkout = () => {
   }
   const { name, price, img, description, min_order, quantity } = product;
   const orderHandel=(e)=> {
-    const order = e.target.value;
+    const orderData = e.target.value;
     
-    if(order>=product.min_order && order<=quantity) {
+    if(orderData>=product.min_order && orderData<=quantity) {
       setQuantityError(false)
-     setOrderQuantity(order)
+     setOrderQuantity(orderData)
     }
     else{
        setQuantityError(true)
@@ -35,7 +36,35 @@ const Checkout = () => {
  
   }
   const onSubmit =  (data) =>{
-    console.log(data,user.displayName,user.email,orderQuantity);
+    const orderInfo={
+      userName:user.displayName,
+      email:user.email,
+      productName:name,
+      productImg:img,
+      quantity:orderQuantity,
+      address:data.address,
+      phone:data.phone,
+    }
+    fetch('http://localhost:5000/orders',{
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(orderInfo)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      if(data.success){
+        toast.success(data.message)
+      }
+      else{
+        toast.error(data.message)
+
+      }
+
+    })
+    
+   
     
     reset()
     
