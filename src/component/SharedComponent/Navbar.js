@@ -21,7 +21,10 @@ const Navbar = ({children}) => {
         <NavLink className='rounded-lg mr-2' to='/nav'>Navbar Item 2</NavLink>
       </li>
       <li>
-        <NavLink className='rounded-lg mr-2' to='/no'>Navbar Item 2</NavLink>
+        {
+          user &&  <NavLink className='rounded-lg mr-2' to='/dashboard'>Dashboard</NavLink>
+
+        }
       </li>
       <li>
         { user?<button onClick={signout} className='font-semibold rounded-lg mr-2'>Signout</button>:<NavLink className='rounded-lg mr-2' to='/login'>Login</NavLink>}
