@@ -1,7 +1,11 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import swal from "sweetalert";
 import auth from "../../firebase.config";
+
+
+
 import Loading from "../SharedComponent/Loading";
 
 const OrderList = () => {
@@ -10,7 +14,7 @@ const OrderList = () => {
   const { data: orderList, isLoading } = useQuery("orderList", () =>
     fetch(`http://localhost:5000/orders/${email}`).then((res) => {
       const result = res.json();
-     console.log({result});
+    //  console.log({result});
       return result;
     })
   );
@@ -18,7 +22,29 @@ const OrderList = () => {
   if (isLoading) {
     <Loading></Loading>;
   }
-  console.log(orderList);
+//   console.log(orderList);
+  const orderDelete=(id)=>{
+	swal({
+		title: "Are you sure?",
+		
+		icon: "warning",
+		buttons: true,
+		dangerMode: true,
+	  })
+	  .then((willDelete) => {
+		if (willDelete) {
+		  swal("Your order has been deleted!", {
+			icon: "success",
+		  });
+		  console.log(id);
+		  
+		} else {
+		  swal("Your order is safe!");
+		}
+	  });
+   
+   
+  }
 //   const { productName, productImg, quantity, price } = orderList;
 
   return (
@@ -97,7 +123,7 @@ const OrderList = () => {
                          <h3>{order.quantity}</h3>
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-						<button class="btn btn-xs">Delete</button>
+						<button onClick={()=>orderDelete(order._id)} class="btn btn-xs">Delete</button>
                         </td>
                       </tr>
                   ))}
