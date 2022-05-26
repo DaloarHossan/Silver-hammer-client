@@ -11,10 +11,9 @@ import Loading from "../SharedComponent/Loading";
 const OrderList = () => {
   const [user] = useAuthState(auth);
   const email = user.email;
-  const { data: orderList, isLoading } = useQuery("orderList", () =>
+  const { data: orderList, isLoading,refetch } = useQuery("orderList", () =>
     fetch(`http://localhost:5000/orders/${email}`).then((res) => {
       const result = res.json();
-    //  console.log({result});
       return result;
     })
   );
@@ -22,7 +21,6 @@ const OrderList = () => {
   if (isLoading) {
     <Loading></Loading>;
   }
-//   console.log(orderList);
   const orderDelete=(id)=>{
 	swal({
 		title: "Are you sure?",
@@ -33,11 +31,15 @@ const OrderList = () => {
 	  })
 	  .then((willDelete) => {
 		if (willDelete) {
+		  fetch(`http://localhost:5000/orders/${id}`,{
+			  method: "DELETE",
+		  })
+		  .then(res=>res.json())
 		  swal("Your order has been deleted!", {
 			icon: "success",
 		  });
-		  console.log(id);
-		  
+		 
+		  refetch()
 		} else {
 		  swal("Your order is safe!");
 		}
@@ -45,7 +47,6 @@ const OrderList = () => {
    
    
   }
-//   const { productName, productImg, quantity, price } = orderList;
 
   return (
     <div>
@@ -68,31 +69,31 @@ const OrderList = () => {
                       scope="col"
                       class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
-                      First
+                      Product Image
                     </th>
                     <th
                       scope="col"
                       class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
-                      Last
+                      Name
                     </th>
                     <th
                       scope="col"
                       class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
-                      Handle
+                      Price
                     </th>
                     <th
                       scope="col"
                       class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
-                      Handle
+                      Quantity
                     </th>
                     <th
                       scope="col"
                       class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
-                      Handle
+                      
                     </th>
                   </tr>
                 </thead>
