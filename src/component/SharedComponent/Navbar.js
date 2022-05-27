@@ -17,17 +17,20 @@ const Navbar = ({children}) => {
       <li>
         <NavLink className='rounded-lg mr-2' to='/about'>About</NavLink>
       </li>
-      <li>
-        <NavLink className='rounded-lg mr-2' to='/nav'>Navbar Item 2</NavLink>
-      </li>
+      
       <li>
         {
           user &&  <NavLink className='rounded-lg mr-2' to='/dashboard'>Dashboard</NavLink>
-
         }
       </li>
       <li>
-        { user?<button onClick={signout} className='font-semibold rounded-lg mr-2'>Signout</button>:<NavLink className='rounded-lg mr-2' to='/login'>Login</NavLink>}
+        <NavLink className='rounded-lg mr-2' to='/blogs'>Blogs</NavLink>
+      </li>
+      <li>
+        <NavLink className='rounded-lg mr-2' to='/portfolio'>My Portfolio</NavLink>
+      </li>
+      <li>
+        { user?<><small>{user.displayName}</small><button onClick={signout} className='font-semibold rounded-lg mr-2'>Signout</button></>:<NavLink className='rounded-lg mr-2' to='/login'>Login</NavLink>}
       </li>
     </>
   );

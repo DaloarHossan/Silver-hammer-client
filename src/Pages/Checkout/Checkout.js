@@ -15,7 +15,12 @@ const Checkout = () => {
   const [orderQuantity,setOrderQuantity]= useState(0);
   const [product, setProduct] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`http://localhost:5000/products/${id}`,{
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    }
+    })
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, []);
@@ -42,13 +47,17 @@ const Checkout = () => {
       productName:name,
       productImg:img,
       quantity:orderQuantity,
+      price:orderQuantity*price,
       address:data.address,
       phone:data.phone,
     }
     fetch('http://localhost:5000/orders',{
       method: 'POST',
       headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+
         'content-type': 'application/json'
+
       },
       body: JSON.stringify(orderInfo)
     })

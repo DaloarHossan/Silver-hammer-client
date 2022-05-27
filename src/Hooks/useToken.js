@@ -10,6 +10,7 @@ const useToken=(user)=>{
 			fetch(`http://localhost:5000/users/${email}`,{
 				method: 'PUT',
 				headers:{
+
 					'content-type': 'application/json'
 				},
 			})
