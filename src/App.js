@@ -17,6 +17,10 @@ import Payment from './Pages/Payment/Payment';
 import NotFound from './Pages/NotFound/NotFound';
 import Blogs from './Pages/Blogs/Blogs';
 import Profile from './component/DashboardComponent/Profile';
+import Portfolio from './Pages/Portfolio/Portfolio';
+import MakeAdmin from './component/DashboardComponent/MakeAdmin';
+import ManageOrders from './component/DashboardComponent/ManageOrders';
+import ManageProduct from './component/DashboardComponent/ManageProduct';
 AOS.init();
 
 function App() {
@@ -33,8 +37,12 @@ function App() {
           <Route path='review' element={<Review></Review>}/>
           <Route path='profile' element={<Profile></Profile>}/>
           <Route path='payment/:id' element={<Payment></Payment>}/>
+          <Route path='makeadmin' element={<MakeAdmin></MakeAdmin>}/>
+          <Route path='manageords' element={<ManageOrders></ManageOrders>}/>
+          <Route path='manageproduct' element={<ManageProduct></ManageProduct>}/>
         </Route>
         <Route path='/blogs' element={<Blogs/>}></Route>
+        <Route path='/portfolio' element={<Portfolio/>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       </Navbar>
