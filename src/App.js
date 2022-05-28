@@ -16,6 +16,7 @@ import Review from './component/DashboardComponent/Review';
 import Payment from './Pages/Payment/Payment';
 import NotFound from './Pages/NotFound/NotFound';
 import Blogs from './Pages/Blogs/Blogs';
+import Profile from './component/DashboardComponent/Profile';
 AOS.init();
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
           <Route index element={<OrderList></OrderList>}/>
           <Route path='review' element={<Review></Review>}/>
+          <Route path='profile' element={<Profile></Profile>}/>
           <Route path='payment/:id' element={<Payment></Payment>}/>
         </Route>
         <Route path='/blogs' element={<Blogs/>}></Route>
