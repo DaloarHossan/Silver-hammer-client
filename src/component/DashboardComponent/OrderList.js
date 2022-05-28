@@ -9,7 +9,7 @@ const OrderList = () => {
   const [user] = useAuthState(auth);
   const email = user.email;
   const { data: orderList, isLoading,refetch } = useQuery("orderList", () =>
-    fetch(`http://localhost:5000/orders/${email}`,{
+    fetch(`https://silver-hammer643.herokuapp.com/orders/${email}`,{
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -33,7 +33,7 @@ const OrderList = () => {
 	  })
 	  .then((willDelete) => {
 		if (willDelete) {
-		  fetch(`http://localhost:5000/orders/${id}`,{
+		  fetch(`https://silver-hammer643.herokuapp.com/orders/${id}`,{
 			  method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`

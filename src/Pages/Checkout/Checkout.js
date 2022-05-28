@@ -19,7 +19,7 @@ const Checkout = () => {
   const [orderQuantity, setOrderQuantity] = useState(0);
   const [product, setProduct] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`https://silver-hammer643.herokuapp.com/products/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -53,7 +53,7 @@ const Checkout = () => {
       address: data.address,
       phone: data.phone,
     };
-    fetch("http://localhost:5000/orders", {
+    fetch("https://silver-hammer643.herokuapp.com/orders", {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

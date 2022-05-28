@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
-import { toast } from 'react-toastify';
-import auth from '../../firebase.config';
-import Loading from '../SharedComponent/Loading';
+import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import auth from "../../firebase.config";
+import Loading from "../SharedComponent/Loading";
 
 const Profile = () => {
-	const [user]=useAuthState(auth)
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	  } = useForm();
-	  const onSubmit = (data) => {
-     const profileInfo={
-		 email:user.email,
-          education:data.education,
-		  location: data.location,
-		  number: data.number,
-		  account:data.account
-	 }
-	 console.log(profileInfo);
-	 fetch("http://localhost:5000/users", {
+  const [user] = useAuthState(auth);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const onSubmit = (data) => {
+    const profileInfo = {
+      email: user.email,
+      education: data.education,
+      location: data.location,
+      number: data.number,
+      account: data.account,
+    };
+    console.log(profileInfo);
+    fetch("https://silver-hammer643.herokuapp.com/users", {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -42,45 +42,49 @@ const Profile = () => {
       });
 
     reset();
-	
-	 
-	  }
-	
-	  const {data:profile, isLoading,refetch} =useQuery('profile',()=>fetch(`http://localhost:5000/profile/${user.email}`,{
-		  method: 'GET',
-		  headers: {
-			authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  };
 
-			"content-type": "application/json", 
-		  }
-	  }).then((res) => res.json()))
-	  refetch()
-	  if(isLoading){
-		  return <Loading></Loading>
-	  }
-	  const {education,location,number,account}=profile;
-	return (
-		<div className='grid lg:grid-cols-2 gap-5 m-12'>
-			<div>
-			<div class="card  bg-base-100 shadow-xl">
-  <div class="card-body">
-	  <div>
-		  <h4>Email :{user.email}</h4>
-		  <h4>Education :{education
-			  }</h4>
-		  <h4>Location :{location}</h4>
-		  <h4>Phone Number :{number}</h4>
-		  <h4>Social Account :{account}</h4>
-	  </div>
-  </div>
-</div>
-			</div>
-			<div>
-			<div class="card  bg-base-100 shadow-xl">
-  <div class="card-body">
-	  <h1>Update Your Profile</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
-	<input type="text"
+  const {
+    data: profile,
+    isLoading,
+    refetch,
+  } = useQuery("profile", () =>
+    fetch(`https://silver-hammer643.herokuapp.com/profile/${user.email}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+
+        "content-type": "application/json",
+      },
+    }).then((res) => res.json())
+  );
+  refetch();
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
+  const { education, location, number, account } = profile;
+  return (
+    <div className="grid lg:grid-cols-2 gap-5 m-12">
+      <div>
+        <div class="card  bg-base-100 shadow-xl">
+          <div class="card-body">
+            <div>
+              <h4>Email :{user.email}</h4>
+              <h4>Education :{education}</h4>
+              <h4>Location :{location}</h4>
+              <h4>Phone Number :{number}</h4>
+              <h4>Social Account :{account}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card  bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h1>Update Your Profile</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                type="text"
                 placeholder="Education"
                 className="input input-bordered w-full "
                 {...register("education", {
@@ -94,7 +98,8 @@ const Profile = () => {
                   </small>
                 )}
               </label>
-	<input type="text"
+              <input
+                type="text"
                 placeholder="Location/City"
                 className="input input-bordered w-full "
                 {...register("location", {
@@ -108,7 +113,8 @@ const Profile = () => {
                   </small>
                 )}
               </label>
-	<input type="text"
+              <input
+                type="text"
                 placeholder="Number"
                 className="input input-bordered w-full "
                 {...register("number", {
@@ -122,7 +128,8 @@ const Profile = () => {
                   </small>
                 )}
               </label>
-	<input type="text"
+              <input
+                type="text"
                 placeholder="Social Account Link"
                 className="input input-bordered w-full "
                 {...register("account", {
@@ -136,15 +143,22 @@ const Profile = () => {
                   </small>
                 )}
               </label>
-			  
-<div>  <input type="submit" value='Update' placeholder="input rating" class="input btn btn-primary input-bordered w-full max-w-xs" />
-</div>
-	</form>
-  </div>
-</div>
-			</div>
-		</div>
-	);
+
+              <div>
+                {" "}
+                <input
+                  type="submit"
+                  value="Update"
+                  placeholder="input rating"
+                  class="input btn btn-primary input-bordered w-full max-w-xs"
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Profile;
