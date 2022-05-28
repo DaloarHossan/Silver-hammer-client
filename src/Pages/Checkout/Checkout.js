@@ -112,7 +112,6 @@ const Checkout = () => {
                 />
                 <label>
                   <span className="text-center text-red-600">
-                    {" "}
                     {quantityError ? "At least min order purchase" : " "}
                   </span>
                 </label>
