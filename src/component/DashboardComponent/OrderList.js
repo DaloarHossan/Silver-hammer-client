@@ -58,52 +58,52 @@ const OrderList = () => {
     <div>
       <h1>My Order </h1>
 
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full">
-                <thead class="border-b">
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full">
+                <thead className="border-b">
                   <tr>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       #
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Product Image
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Price
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       Quantity
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       
                     </th>
                     <th
                       scope="col"
-                      class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+                      className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
                       
                     </th>
@@ -112,13 +112,13 @@ const OrderList = () => {
                 <tbody>
                   {orderList?.map((order, index) => (
                       
-                      <tr class="border-b">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      <tr className="border-b">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {index+1}
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                          <div class="avatar">
-                            <div class="w-20 rounded">
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <div className="avatar">
+                            <div className="w-20 rounded">
                               <img
                                 src={order.productImg}
                                 alt="order-img"
@@ -126,20 +126,20 @@ const OrderList = () => {
                             </div>
                           </div>
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           <h3>{order.productName}</h3>
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                          <h3>{order.price}</h3>
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                          <h3>{order.quantity}</h3>
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                         <p><Link to={`/dashboard/payment/${order._id}`}><button class="btn btn-xs btn-success" >Pay</button></Link></p>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                         <p><Link to={`/dashboard/payment/${order._id}`}><button className="btn btn-xs btn-success" >Pay</button></Link></p>
                         </td>
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-						<button onClick={()=>orderDelete(order._id)} class="btn btn-xs bg-red-600">Cancel</button>
+                        <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+						<button onClick={()=>orderDelete(order._id)} className="btn btn-xs bg-red-600">Cancel</button>
                         </td>
                       </tr>
                   ))}

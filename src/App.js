@@ -13,6 +13,9 @@ import RequireAuth from './component/PrivetRoute/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import OrderList from './component/DashboardComponent/OrderList';
 import Review from './component/DashboardComponent/Review';
+import Payment from './Pages/Payment/Payment';
+import NotFound from './Pages/NotFound/NotFound';
+import Blogs from './Pages/Blogs/Blogs';
 AOS.init();
 
 function App() {
@@ -26,7 +29,11 @@ function App() {
         <Route path='/checkout/:id' element={<RequireAuth><Checkout></Checkout></RequireAuth>}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
           <Route index element={<OrderList></OrderList>}/>
-          <Route path='review' element={<Review></Review>}/></Route>
+          <Route path='review' element={<Review></Review>}/>
+          <Route path='payment/:id' element={<Payment></Payment>}/>
+        </Route>
+        <Route path='/blogs' element={<Blogs/>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       </Navbar>
       <ToastContainer/>
