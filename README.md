@@ -1,7 +1,7 @@
 # Silver Hammer website
 
 ## [Live website link](https://silver-hammer-bf1a6.web.app/).
-## [Privet server code link](https://github.com/programming-hero-web-course1/manufacturer-website-server-side-DaloarHossan)
+## [server Side code link]()
 
 ## Website features :
 - Create a simple navbar,banner.
